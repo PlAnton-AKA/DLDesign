@@ -1,0 +1,15 @@
+﻿<Window x:Class="TestDLdesign.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="clr-namespace:TestDLdesign" 
+        Title="DL test WPF design" Height="676" Width="550">    
+
+    <Grid>        
+        <DockPanel>
+            <TextBox DockPanel.Dock="Top">Top</TextBox>
+            <Button DockPanel.Dock="Bottom" Content="{Binding Path=Name}" Click="Button_Click_1" Style="{StaticResource myFirstControlStyle}"></Button>
+            <Button DockPanel.Dock="Left" Style="{StaticResource SimpleButton}">Click Me!</Button>
+            <local:NumericUpDown/>
+        </DockPanel>
+    </Grid>
+</Window>

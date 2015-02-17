@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="myFirstControlStyle"  TargetType="{x:Type Button}">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid Margin="100" Height="200">
+                        <Ellipse Stroke="DarkBlue" StrokeThickness="2">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush Center="0.3, 0.2" RadiusX="0.5" RadiusY="0.5">
+                                    <GradientStop Color="Azure" Offset="0.1"></GradientStop>
+                                    <GradientStop Color="CornflowerBlue" Offset="1.1"></GradientStop>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <ContentPresenter Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="SimpleButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Orange" />
+        <Setter Property="BorderBrush" Value="Crimson" />
+        <Setter Property="FontSize" Value="40" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Height" Value="100"/>
+        <Setter Property="Width" Value="200"/>        
+    </Style>
+
+</ResourceDictionary>
