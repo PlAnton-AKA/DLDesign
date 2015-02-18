@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomWindow.cs" />
+    <Compile Include="MainForm.cs" />
     <Compile Include="NumericUpDown.xaml.cs">
       <DependentUpon>NumericUpDown.xaml</DependentUpon>
     </Compile>
@@ -106,6 +108,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\erp options_b.png" />
+    <Resource Include="img\general_b.png" />
+    <Resource Include="img\operations_b.png" />
+    <Resource Include="img\sitel_b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\erp options_w.png" />
+    <Resource Include="img\general_w.png" />
+    <Resource Include="img\operations_w.png" />
+    <Resource Include="img\sitel_w.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

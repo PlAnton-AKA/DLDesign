@@ -31,5 +31,25 @@ namespace TestDLdesign
         {
             MessageBox.Show("Hello, Windows Presentation Foundation!");
         }
+
+        private void TabItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void TabItem_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TabItem_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TabItem_Click_4(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
