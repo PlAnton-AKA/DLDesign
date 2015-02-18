@@ -10,7 +10,7 @@ namespace TestDLdesign
     {
         public string Name { get; set; }
         public Person() {
-            Name = "Anton P";
+            Name = "Anton Pluzhnikov";
         }
     }
 }
