@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:TestDLdesign"
-                    
+                    xmlns:local="clr-namespace:TestDLdesign"                    
                     >
 
     <Style x:Key="myFirstControlStyle"  TargetType="{x:Type Button}">
@@ -110,13 +109,15 @@
 
     
     
-    <Style TargetType="{x:Type local:MainForm}" x:Name="ThemedWindowStyle">
+    <Style TargetType="{x:Type local:MainForm}" x:Key="ThemedWindowStyle">
         <Style.Resources>
             <SolidColorBrush x:Key="BorderBrush" Color="#ECECEC"/>
             <SolidColorBrush x:Key="CaptionBackgroundBrush" Color="Blue"/>
             <SolidColorBrush x:Key="CaptionForegroundBrush" Color="White"/>
+            <local:MaximizeVisibilityConverter x:Key="MaximizeVisibilityConverter"/>
+            <local:MinimizeVisibilityConverter x:Key="MinimizeVisibilityConverter"/>
         </Style.Resources>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Background" Value="White"/>
         <Setter Property="AllowsTransparency" Value="True"/>
         <Setter Property="MinHeight" Value="100"/>
         <Setter Property="MinWidth" Value="100"/>
@@ -150,7 +151,7 @@
                             <DockPanel LastChildFill="True">
                                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
                                     <Button x:Name="PART_WindowCaptionMinimizeButton"
-                                            Visibility="{TemplateBinding ResizeMode,Converter={StaticResource MinimazeVisibilityConverter}}"
+                                            Visibility="{TemplateBinding ResizeMode,Converter={StaticResource MinimizeVisibilityConverter}}"
                                             Content="_"
                                             Margin="0,0,4,0"/>
                                     <Button x:Name="PART_WindowCaptionMaximizeButton"
@@ -158,7 +159,6 @@
                                             Content="[ ]"
                                             Margin="0,0,4,0"/>
                                     <Button x:Name="PART_WindowCaptionCloseButton"
-                                            Visibility="{TemplateBinding ResizeMode,Converter={StaticResource CloseVisibilityConverter}}"
                                             Content="X"/>
                                 </StackPanel>
                                 <TextBlock x:Name="PART_WindowCaptionText" DockPanel.Dock="Left" Margin="6,0,0,0" Padding="0">
@@ -171,7 +171,7 @@
                             </DockPanel>
                         </Border>
                         
-                        <DockPanel Grid.Row="2" Grid.Column="2">
+                        <DockPanel Background="{TemplateBinding Background}" Grid.Row="2" Grid.Column="1"  >
                             <ContentPresenter/>
                         </DockPanel>
                     </Grid>

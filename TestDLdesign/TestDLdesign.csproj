@@ -57,9 +57,11 @@
     </ApplicationDefinition>
     <Compile Include="CustomWindow.cs" />
     <Compile Include="MainForm.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="NumericUpDown.xaml.cs">
       <DependentUpon>NumericUpDown.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThemedWindowConverters.cs" />
     <Page Include="NumericUpDown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

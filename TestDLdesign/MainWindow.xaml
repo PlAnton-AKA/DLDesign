@@ -1,14 +1,14 @@
-﻿<Window x:Class="TestDLdesign.MainWindow"
+﻿<local:MainForm x:Class="TestDLdesign.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:local="clr-namespace:TestDLdesign" 
-        Title="DL test WPF design" Height="676" Width="550"
-        Background="LightSkyBlue"           
-        >    
+        Title="DL test WPF design" Height="676" Width="550"             
+        
+        >
 
-    
-    
-    <Grid>
+
+
+    <Grid Background="White">
         <!--<DockPanel>
             <TabControl DockPanel.Dock="Top" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_1" HeaderTemplate="{StaticResource tabItemGeneralHeaderTemplate}" Name="tabItemGeneral"/>
@@ -28,4 +28,4 @@
         </DockPanel>-->
         
     </Grid>
-</Window>
+</local:MainForm>
