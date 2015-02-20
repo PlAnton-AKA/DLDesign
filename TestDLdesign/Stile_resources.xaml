@@ -170,8 +170,14 @@
                                 </TextBlock>
                             </DockPanel>
                         </Border>
-                        
-                        <DockPanel Background="{TemplateBinding Background}" Grid.Row="2" Grid.Column="1"  >
+
+                        <DockPanel Background="LightSkyBlue" Grid.Row="2" Grid.Column="1"  >
+                            <!--<TabControl DockPanel.Dock="Top" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_1" HeaderTemplate="{StaticResource tabItemGeneralHeaderTemplate}" Name="tabItemGeneral"/>
+                                <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_2" HeaderTemplate="{StaticResource tabItemSiteHeaderTemplate}" Name="tabSitelImg"/>
+                                <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_3" HeaderTemplate="{StaticResource tabItemErpHeaderTemplate}" Name="tabErpImg"/>
+                                <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_4" HeaderTemplate="{StaticResource tabItemOperationsHeaderTemplate}" Name="tabOperationsImg"/>
+                            </TabControl>-->
                             <ContentPresenter/>
                         </DockPanel>
                     </Grid>

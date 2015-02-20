@@ -166,7 +166,7 @@ namespace TestDLdesign
             };
             border.MouseMove += (sender, e) =>
             {
-                if (WindowState != WindowState.Maximized && ResizeMode == ResizeMode.CanResize)
+                if (WindowState != WindowState.Maximized && border.IsMouseCaptured && ResizeMode == ResizeMode.CanResize)
                 {
                     Point cursorLocation = e.GetPosition(this);
 
@@ -180,32 +180,32 @@ namespace TestDLdesign
                         case WindowBorderEdge.Left:
                             if (Width - nHorizontalChange <= MinWidth)
                                 break;
-                            Left += nHorizontalChange;
-                            Width -= nHorizontalChange;
+                            Left   += nHorizontalChange;
+                            Width  -= nHorizontalChange;
                             break;
                         case WindowBorderEdge.TopLeft:
                             if (Width - nHorizontalChange <= MinWidth)
                                 break;
-                            Left += nHorizontalChange;
-                            Width -= nHorizontalChange;
+                            Left   += nHorizontalChange;
+                            Width  -= nHorizontalChange;
                             if (Height - nVerticalChange <= MinHeight)
                                 break;
-                            Top += nVerticalChange;
+                            Top    += nVerticalChange;
                             Height -= nVerticalChange;
                             break;
                         case WindowBorderEdge.Top:
                             if (Height - nVerticalChange <= MinHeight)
                                 break;
-                            Top += nVerticalChange;
+                            Top    += nVerticalChange;
                             Height -= nVerticalChange;
                             break;
                         case WindowBorderEdge.TopRight:
                             if (pHorizontalChange <= MinWidth)
                                 break;
-                            Width = pHorizontalChange;
+                            Width  = pHorizontalChange;
                             if (Height - nVerticalChange <= MinHeight)
                                 break;
-                            Top += nVerticalChange;
+                            Top    += nVerticalChange;
                             Height -= nVerticalChange;
                             break;
                         case WindowBorderEdge.Right:
@@ -216,7 +216,7 @@ namespace TestDLdesign
                         case WindowBorderEdge.BottomRight:
                             if (pHorizontalChange <= MinWidth)
                                 break;
-                            Width = pHorizontalChange;
+                            Width  = pHorizontalChange;
                             if (pVerticalChange <= MinHeight)
                                 break;
                             Height = pVerticalChange;
@@ -229,8 +229,8 @@ namespace TestDLdesign
                         case WindowBorderEdge.BottomLeft:
                             if (Width - nHorizontalChange <= MinWidth)
                                 break;
-                            Left += nHorizontalChange;
-                            Width -= nHorizontalChange;
+                            Left   += nHorizontalChange;
+                            Width  -= nHorizontalChange;
                             if (pVerticalChange <= MinHeight)
                                 break;
                             Height = pVerticalChange;

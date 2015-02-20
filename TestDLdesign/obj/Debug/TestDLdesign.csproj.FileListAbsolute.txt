@@ -35,3 +35,4 @@ C:\Users\apluzhnikov\Documents\Visual Studio 2012\Projects\DLDesign\DLDesign\Tes
 C:\Users\apluzhnikov\Documents\Visual Studio 2012\Projects\DLDesign\DLDesign\TestDLdesign\obj\Debug\TestDLdesign.csproj.GenerateResource.Cache
 C:\Users\apluzhnikov\Documents\Visual Studio 2012\Projects\DLDesign\DLDesign\TestDLdesign\obj\Debug\TestDLdesign.exe
 C:\Users\apluzhnikov\Documents\Visual Studio 2012\Projects\DLDesign\DLDesign\TestDLdesign\obj\Debug\TestDLdesign.pdb
+C:\Users\apluzhnikov\Documents\Visual Studio 2012\Projects\DLDesign\DLDesign\TestDLdesign\obj\Debug\TestDLdesign.csprojResolveAssemblyReference.cache
