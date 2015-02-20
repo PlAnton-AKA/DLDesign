@@ -8,9 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/erp%20options_w.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/general_w.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/operations_w.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/sitel_w.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("img/exit_icon.png")]
 
 

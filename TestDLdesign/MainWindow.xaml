@@ -6,14 +6,18 @@
 
     <Grid>
         <DockPanel>
-            <TabControl DockPanel.Dock="Top" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="600">
+            <TabControl DockPanel.Dock="Top" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="600" BorderThickness="1,0,1,1">
                 <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_1" HeaderTemplate="{StaticResource tabItemGeneralHeaderTemplate}" Name="tabItemGeneral"></TabItem>
                 <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_2" HeaderTemplate="{StaticResource tabItemSiteHeaderTemplate}" Name="tabSitelImg"></TabItem>
                 <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_3" HeaderTemplate="{StaticResource tabItemErpHeaderTemplate}" Name="tabErpImg"></TabItem>
                 <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_4" HeaderTemplate="{StaticResource tabItemOperationsHeaderTemplate}" Name="tabOperationsImg"></TabItem>
             </TabControl>
-            <StackPanel DockPanel.Dock="Bottom" Margin="0,0,0,0">
-                <TextBlock>dfhdghnzd</TextBlock>
+            <StackPanel DockPanel.Dock="Bottom" Background="Black">
+                <DockPanel >
+                    <Button HorizontalAlignment="Right" Margin="5,0,0,0">Ok</Button>
+                    <Button HorizontalAlignment="Right" Margin="5,0,0,0" >Cancel</Button>
+                    <Button HorizontalAlignment="Right" Margin="5,0,5,0" >Apply</Button>
+                </DockPanel>                
             </StackPanel>
         </DockPanel>
         <!--<DockPanel>

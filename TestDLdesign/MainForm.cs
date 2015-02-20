@@ -1,15 +1,17 @@
 ﻿using System;
+
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 
+
 namespace TestDLdesign
 {
     public class MainForm : System.Windows.Window
     {
-        private Point cursorOffset;
+        private System.Windows.Point cursorOffset;
         private double restoreTop;
 
         private FrameworkElement borderLeft;
@@ -45,10 +47,8 @@ namespace TestDLdesign
             base.OnApplyTemplate();
 
             RegisterFrame();
-            RegisterBorders();
-            RegisterCaption();
-            RegisterMinimizeButton();
-            RegisterMaximizeButton();
+            //RegisterBorders();
+            RegisterCaption();            
             RegisterCloseButton();
         }
 
@@ -57,36 +57,10 @@ namespace TestDLdesign
             closeButton = (Button)GetTemplateChild("PART_WindowCaptionCloseButton");
 
             if (closeButton != null)
-                closeButton.Click += (sender, e) => Close();
-        }
-
-        private void RegisterMaximizeButton()
-        {
-            maximizeButton = (Button)GetTemplateChild("PART_WindowCaptionMaximizeButton");
-
-            if (maximizeButton != null)
             {
-                maximizeButton.Click += (sender, e) =>
-                {
-                    if (WindowState == System.Windows.WindowState.Normal)
-                        WindowState = System.Windows.WindowState.Maximized;
-                    else
-                        WindowState = System.Windows.WindowState.Normal;
-                };
+                closeButton.Click += (sender, e) => Close();                 
             }
-        }
-
-        private void RegisterMinimizeButton()
-        {
-            minimizeButton = (Button)GetTemplateChild("PART_WindowCaptionMinimizeButton");
-            if (minimizeButton != null)
-            {
-                minimizeButton.Click += (sender, e) =>
-                {
-                    WindowState = System.Windows.WindowState.Minimized;
-                };
-            }
-        }
+        }        
 
         private void RegisterBorderEvents(WindowBorderEdge borderEdge, FrameworkElement border)
         {

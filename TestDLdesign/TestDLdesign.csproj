@@ -61,7 +61,6 @@
     <Compile Include="NumericUpDown.xaml.cs">
       <DependentUpon>NumericUpDown.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThemedWindowConverters.cs" />
     <Page Include="NumericUpDown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +121,9 @@
     <Resource Include="img\general_w.png" />
     <Resource Include="img\operations_w.png" />
     <Resource Include="img\sitel_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\exit_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
