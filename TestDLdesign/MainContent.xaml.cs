@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace TestDLdesign
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainContent.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainContent : Page
     {
-        public MainWindow()
-        {            
+        public MainContent()
+        {
             InitializeComponent();
-            Style = (Style)TryFindResource("ThemedWindowStyle");
-        }        
+        }
     }
 }

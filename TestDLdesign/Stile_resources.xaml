@@ -106,86 +106,42 @@
             </DataTrigger>
         </DataTemplate.Triggers>
     </DataTemplate>
-
-    <UserControl x:Key="ImageResources">
-        <UserControl.Resources>
-            <Image x:Key="ExitButtonImage" Source="img/exit_icon.png"/>
-        </UserControl.Resources>
-    </UserControl>
-
-    <Style x:Key="ShadowStyle">
-        <Setter Property="Control.Foreground" Value="LightGray" />
-    </Style>
-
+    
     <Style TargetType="{x:Type Button}" x:Key="CloseButton">
-        <Style.Resources>            
+        <Style.Resources>
+            <Image x:Key="ExitButtonImage" Source="img/exit_icon.png"/>
         </Style.Resources>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Margin" Value="2"/>
-        <Setter Property="FocusVisualStyle" Value="{StaticResource CloseButtonFocusVisual}"/>
         <Setter Property="Content" Value="{StaticResource ExitButtonImage}"/>        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Name="border" 
-                            BorderThickness="1"
-                            Padding="4,2"
-                            BorderBrush="DarkGray"
-                            CornerRadius="3"
-                            Background="{TemplateBinding Background}">
-                        <Grid>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="contentShadow"
-                                              Style="{StaticResource ShadowStyle}">
-                                <ContentPresenter.RenderTransform>
-                                    <TranslateTransform X="1.0" Y="1.0"/>
-                                </ContentPresenter.RenderTransform>
-                            </ContentPresenter>
+                    <Border Name="border" BorderBrush="Transparent">
+                        <Grid>                            
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Name="content"/>
                         </Grid>
                     </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8"/>
-                            <Setter Property="Foreground" Value="#FF4788c8" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" >
-                                <Setter.Value>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                                        <GradientStop Color="#FFFFD190" Offset="0.35"/>
-                                        <GradientStop Color="Orange" Offset="0.95"/>
-                                        <GradientStop Color="#FFFFD190" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Setter.Value>
-                            </Setter>
+                    <ControlTemplate.Triggers>                        
+                        <Trigger Property="IsPressed" Value="True">                            
                             <Setter TargetName="content" Property="RenderTransform" >
                                 <Setter.Value>
                                     <TranslateTransform Y="1.0" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
-                        <Trigger Property="IsDefaulted" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
-                        </Trigger>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="border" Property="Opacity" Value="0.7" />
-                            <Setter Property="Foreground" Value="Gray" />
-                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>                
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <Style TargetType="{x:Type local:MainForm}" x:Key="ThemedWindowStyle">
+
+    <Style TargetType="{x:Type Window}" x:Key="ThemedWindowStyle">
         <Style.Resources>
             <SolidColorBrush x:Key="BorderBrush" Color="#ECECEC"/>
             <SolidColorBrush x:Key="MainColorBrush" Color="#519cbc"/>
             <SolidColorBrush x:Key="CaptionBackgroundBrush" Color="Black"/>
-            <SolidColorBrush x:Key="CaptionForegroundBrush" Color="White"/>            
+            <SolidColorBrush x:Key="CaptionForegroundBrush" Color="White"/>
         </Style.Resources>        
         <Setter Property="Background" Value="White"/>
         <Setter Property="AllowsTransparency" Value="True"/>
@@ -194,7 +150,7 @@
         <Setter Property="WindowStyle" Value="None"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:MainForm}" x:Name="PART_WindowTemplate">
+                <ControlTemplate TargetType="{x:Type Window}" x:Name="PART_WindowTemplate">
                     <Grid x:Name="PART_WindowFrame">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="4"/>
@@ -202,29 +158,18 @@
                             <ColumnDefinition Width="4"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="4"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="4"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
+
+
                         
-                        <!--<Border Background="{DynamicResource BorderBrush}" x:Name="PART_WindowBorderLeft" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"/>
-                        <Border Background="{DynamicResource BorderBrush}" x:Name="PART_WindowBorderTopLeft" Grid.Column="0" Grid.Row="0"/>
-                        <Border Background="{DynamicResource BorderBrush}" x:Name="PART_WindowBorderTop" Grid.Column="1" Grid.Row="0"/>
-                        <Border Background="{DynamicResource BorderBrush}" x:Name="PART_WindowBorderTopRight" Grid.Column="2" Grid.Row="0"/>
-                        <Border Background="{DynamicResource BorderBrush}" x:Name="PART_WindowBorderRight" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2"/>
-                        <Border Background="{DynamicResource BorderBrush}" x:Name="PART_WindowBorderBottomRight" Grid.Column="2" Grid.Row="3"/>
-                        <Border Background="{DynamicResource BorderBrush}" x:Name="PART_WindowBorderBottom" Grid.Column="1" Grid.Row="3"/>
-                        <Border Background="{DynamicResource BorderBrush}" x:Name="PART_WindowBorderBottomLeft" Grid.Column="0" Grid.Row="3"/>-->
-                        
-                        <Border x:Name="PART_WindowCaption" Grid.Column="1" Grid.Row="1" Background="{DynamicResource CaptionBackgroundBrush}">
+                        <Border x:Name="PART_WindowCaption" Grid.Column="1" Grid.Row="0" 
+                                Background="{DynamicResource CaptionBackgroundBrush}">
                             <DockPanel LastChildFill="True">
                                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Button x:Name="PART_WindowCaptionCloseButton" Style="{StaticResource CloseButton}">sdg</Button>
-                                        <!--<Background="Transparent"
-                                            BorderBrush="Black"
-                                            BorderThickness="0,0,0,0"
-                                            Content="{StaticResource ExitButtonImage}"-->
+                                    <Button x:Name="PART_WindowCaptionCloseButton" Style="{StaticResource CloseButton}" />                                        
                                 </StackPanel>
                                 <TextBlock x:Name="PART_WindowCaptionText" DockPanel.Dock="Left" Margin="6,0,0,0" Padding="0">
                                     <Image x:Name="PART_WindowCaptionIcon" Width="16" Height="16" Margin="0,0,6,0" Source="{TemplateBinding Icon}"
@@ -232,19 +177,16 @@
                                            RenderOptions.EdgeMode="Aliased"/>
                                     <Run BaselineAlignment="Center" Text="{TemplateBinding Title}"
                                          Foreground="{DynamicResource CaptionForegroundBrush}"/>
-                                </TextBlock>
+                                </TextBlock>                                
                             </DockPanel>
                         </Border>
-
-                        <DockPanel Background="{StaticResource MainColorBrush}" Grid.Row="2" Grid.Column="1"  >
-                            <!--<TabControl DockPanel.Dock="Top" TabStripPlacement="Left" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_1" HeaderTemplate="{StaticResource tabItemGeneralHeaderTemplate}" Name="tabItemGeneral"/>
-                                <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_2" HeaderTemplate="{StaticResource tabItemSiteHeaderTemplate}" Name="tabSitelImg"/>
-                                <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_3" HeaderTemplate="{StaticResource tabItemErpHeaderTemplate}" Name="tabErpImg"/>
-                                <TabItem Style="{StaticResource firstTab}" ButtonBase.Click="TabItem_Click_4" HeaderTemplate="{StaticResource tabItemOperationsHeaderTemplate}" Name="tabOperationsImg"/>
-                            </TabControl>-->
-                            <ContentPresenter/>
+                        
+                        <DockPanel Background="{StaticResource MainColorBrush}" Grid.Row="1" Grid.Column="1">                             
+                            <local:MainContent/>                            
                         </DockPanel>
+                        <DockPanel Background="Yellow" Grid.Row="2" Grid.Column="1">                            
+                            <Button DockPanel.Dock="Top" HorizontalAlignment="Right" VerticalAlignment="Center">sdgsg</Button>
+                        </DockPanel>    
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger SourceName="PART_WindowCaptionIcon" Property="Source" Value="{x:Null}">

@@ -11,47 +11,22 @@ namespace TestDLdesign
 {
     public class MainForm : System.Windows.Window
     {
-        private System.Windows.Point cursorOffset;
         private double restoreTop;
-
-        private FrameworkElement borderLeft;
-        private FrameworkElement borderTopLeft;
-        private FrameworkElement borderTop;
-        private FrameworkElement borderTopRight;
-        private FrameworkElement borderRight;
-        private FrameworkElement borderBottomRight;
-        private FrameworkElement borderBottom;
-        private FrameworkElement borderBottomLeft;
-        private FrameworkElement frame;
         private FrameworkElement caption;
-        private Button minimizeButton;
-        private Button maximizeButton;
         private Button closeButton;
-        private IntPtr handle;
-
-
+        
         public MainForm()
         {
-            SourceInitialized += (sender, e) =>
-            {
-                handle = new WindowInteropHelper(this).Handle;
-                HwndSource.FromHwnd(handle).AddHook(new HwndSourceHook(WndProc));
-            };
             Style = (Style)TryFindResource("ThemedWindowStyle");
         }
-
-
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            RegisterFrame();
-            //RegisterBorders();
-            RegisterCaption();            
+            RegisterCaption();
             RegisterCloseButton();
         }
-
         private void RegisterCloseButton()
         {
             closeButton = (Button)GetTemplateChild("PART_WindowCaptionCloseButton");
@@ -61,188 +36,6 @@ namespace TestDLdesign
                 closeButton.Click += (sender, e) => Close();                 
             }
         }        
-
-        private void RegisterBorderEvents(WindowBorderEdge borderEdge, FrameworkElement border)
-        {
-            border.MouseEnter += (sender, e) =>
-            {
-                if (WindowState != WindowState.Maximized && ResizeMode == ResizeMode.CanResize)
-                {
-                    switch (borderEdge)
-                    {
-                        case WindowBorderEdge.Left:
-                        case WindowBorderEdge.Right:
-                            border.Cursor = Cursors.SizeWE;
-                            break;
-                        case WindowBorderEdge.Top:
-                        case WindowBorderEdge.Bottom:
-                            border.Cursor = Cursors.SizeNS;
-                            break;
-                        case WindowBorderEdge.TopLeft:
-                        case WindowBorderEdge.BottomRight:
-                            border.Cursor = Cursors.SizeNWSE;
-                            break;
-                        case WindowBorderEdge.TopRight:
-                        case WindowBorderEdge.BottomLeft:
-                            border.Cursor = Cursors.SizeNESW;
-                            break;
-                    }
-                }
-                else
-                {
-                    border.Cursor = Cursors.Arrow;
-                }
-
-            };
-
-            border.MouseLeftButtonDown += (sender, e) =>
-            {
-                if (WindowState != WindowState.Maximized && ResizeMode == ResizeMode.CanResize)
-                {
-                    Point cursorLocation = e.GetPosition(this);
-                    Point cursorOffset = new Point();
-                    switch (borderEdge)
-                    {
-                        case WindowBorderEdge.Left:
-                            cursorOffset.X = cursorLocation.X;
-                            break;
-                        case WindowBorderEdge.TopLeft:
-                            cursorOffset.X = cursorLocation.X;
-                            cursorOffset.Y = cursorLocation.Y;
-                            break;
-                        case WindowBorderEdge.Top:
-                            cursorOffset.Y = cursorLocation.Y;
-                            break;
-                        case WindowBorderEdge.TopRight:
-                            cursorOffset.X = Width - cursorLocation.X;
-                            cursorOffset.Y = cursorLocation.Y;
-                            break;
-                        case WindowBorderEdge.Right:
-                            cursorOffset.X = Width - cursorLocation.X;
-                            break;
-                        case WindowBorderEdge.BottomRight:
-                            cursorOffset.X = Width - cursorLocation.X;
-                            cursorOffset.Y = Height - cursorLocation.Y;
-                            break;
-                        case WindowBorderEdge.Bottom:
-                            cursorOffset.Y = Height - cursorLocation.Y;
-                            break;
-                        case WindowBorderEdge.BottomLeft:
-                            cursorOffset.X = cursorLocation.X;
-                            cursorOffset.Y = Height - cursorLocation.Y;
-                            break;
-                    }
-
-                    this.cursorOffset = cursorOffset;
-
-                    border.CaptureMouse();
-                }
-            };
-            border.MouseMove += (sender, e) =>
-            {
-                if (WindowState != WindowState.Maximized && border.IsMouseCaptured && ResizeMode == ResizeMode.CanResize)
-                {
-                    Point cursorLocation = e.GetPosition(this);
-
-                    double nHorizontalChange = (cursorLocation.X - cursorOffset.X);
-                    double pHorizontalChange = (cursorLocation.X + cursorOffset.X);
-                    double nVerticalChange = (cursorLocation.Y - cursorOffset.Y);
-                    double pVerticalChange = (cursorLocation.Y + cursorOffset.Y);
-
-                    switch (borderEdge)
-                    {
-                        case WindowBorderEdge.Left:
-                            if (Width - nHorizontalChange <= MinWidth)
-                                break;
-                            Left   += nHorizontalChange;
-                            Width  -= nHorizontalChange;
-                            break;
-                        case WindowBorderEdge.TopLeft:
-                            if (Width - nHorizontalChange <= MinWidth)
-                                break;
-                            Left   += nHorizontalChange;
-                            Width  -= nHorizontalChange;
-                            if (Height - nVerticalChange <= MinHeight)
-                                break;
-                            Top    += nVerticalChange;
-                            Height -= nVerticalChange;
-                            break;
-                        case WindowBorderEdge.Top:
-                            if (Height - nVerticalChange <= MinHeight)
-                                break;
-                            Top    += nVerticalChange;
-                            Height -= nVerticalChange;
-                            break;
-                        case WindowBorderEdge.TopRight:
-                            if (pHorizontalChange <= MinWidth)
-                                break;
-                            Width  = pHorizontalChange;
-                            if (Height - nVerticalChange <= MinHeight)
-                                break;
-                            Top    += nVerticalChange;
-                            Height -= nVerticalChange;
-                            break;
-                        case WindowBorderEdge.Right:
-                            if (pHorizontalChange <= MinWidth)
-                                break;
-                            Width = pHorizontalChange;
-                            break;
-                        case WindowBorderEdge.BottomRight:
-                            if (pHorizontalChange <= MinWidth)
-                                break;
-                            Width  = pHorizontalChange;
-                            if (pVerticalChange <= MinHeight)
-                                break;
-                            Height = pVerticalChange;
-                            break;
-                        case WindowBorderEdge.Bottom:
-                            if (pVerticalChange <= MinHeight)
-                                break;
-                            Height = pVerticalChange;
-                            break;
-                        case WindowBorderEdge.BottomLeft:
-                            if (Width - nHorizontalChange <= MinWidth)
-                                break;
-                            Left   += nHorizontalChange;
-                            Width  -= nHorizontalChange;
-                            if (pVerticalChange <= MinHeight)
-                                break;
-                            Height = pVerticalChange;
-                            break;
-                    }
-                }
-            };
-
-            border.MouseLeftButtonUp += (sender, e) =>
-            {
-                border.ReleaseMouseCapture();
-            };
-
-        }
-
-
-        private void RegisterBorders()
-        {
-            borderLeft = (FrameworkElement)GetTemplateChild("PART_WindowBorderLeft");
-            borderTopLeft = (FrameworkElement)GetTemplateChild("PART_WindowBorderTopLeft");
-            borderTop = (FrameworkElement)GetTemplateChild("PART_WindowBorderTop");
-            borderTopRight = (FrameworkElement)GetTemplateChild("PART_WindowBorderTopRight");
-            borderRight = (FrameworkElement)GetTemplateChild("PART_WindowBorderRight");
-            borderBottomRight = (FrameworkElement)GetTemplateChild("PART_WindowBorderBottomRight");
-            borderBottom = (FrameworkElement)GetTemplateChild("PART_WindowBorderBottom");
-            borderBottomLeft = (FrameworkElement)GetTemplateChild("PART_WindowBorderBottomLeft");
-
-            RegisterBorderEvents(WindowBorderEdge.Left, borderLeft);
-            RegisterBorderEvents(WindowBorderEdge.TopLeft, borderTopLeft);
-            RegisterBorderEvents(WindowBorderEdge.Top, borderTop);
-            RegisterBorderEvents(WindowBorderEdge.TopRight, borderTopRight);
-            RegisterBorderEvents(WindowBorderEdge.Right, borderRight);
-            RegisterBorderEvents(WindowBorderEdge.BottomRight, borderBottomRight);
-            RegisterBorderEvents(WindowBorderEdge.Bottom, borderBottom);
-            RegisterBorderEvents(WindowBorderEdge.BottomLeft, borderBottomLeft);
-        }
-
-
         private void RegisterCaption()
         {
             caption = (FrameworkElement)GetTemplateChild("PART_WindowCaption");
@@ -276,63 +69,6 @@ namespace TestDLdesign
                     }
                 };
             }
-        }
-
-        private void RegisterFrame()
-        {
-            frame = (FrameworkElement)GetTemplateChild("PART_WindowFrame");
-        }
-
-        private void WmGetMinMaxInfo(IntPtr hwnd, IntPtr lParam)
-        {
-            MIMAXINFO mmi = (MIMAXINFO)Marshal.PtrToStructure(lParam, typeof(MIMAXINFO));
-
-            int MONITOR_DEFAULTTONEAREST = 0x00000002;
-            IntPtr monitor = NativeMethods.MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST);
-
-            if (monitor != System.IntPtr.Zero)
-            {
-                MONITORINFO monitorInfo = new MONITORINFO();
-                NativeMethods.GetMonitorInfo(monitor, monitorInfo);
-
-                RECT rcWorkArea = monitorInfo.rcWork;
-                RECT rcMonitorArea = monitorInfo.rcMonitor;
-
-                mmi.ptMaxPosition.x = Math.Abs(rcWorkArea.left - rcMonitorArea.left);
-                mmi.ptMaxPosition.y = Math.Abs(rcWorkArea.top - rcMonitorArea.top);
-                mmi.ptMaxSize.x = Math.Abs(rcWorkArea.right - rcMonitorArea.left);
-                mmi.ptMaxSize.y = Math.Abs(rcWorkArea.bottom - rcMonitorArea.top);
-            }
-
-            Marshal.StructureToPtr(mmi, lParam, true);
-        }
-
-        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
-            switch (msg)
-            {
-                case 0x0024:
-                    WmGetMinMaxInfo(hwnd, lParam);
-                    handled = true;
-                    break;
-            }
-
-            return IntPtr.Zero;
-        }
-
-
-
-        public enum WindowBorderEdge
-        {
-            Left,
-            TopLeft,
-            Top,
-            TopRight,
-            Right,
-            BottomRight,
-            Bottom,
-            BottomLeft
-        }
-
+        }        
     }
 }
